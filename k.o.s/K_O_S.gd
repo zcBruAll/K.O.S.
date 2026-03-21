@@ -3,7 +3,6 @@ extends Node2D
 @export var spell_zone: PackedScene
 
 var spellBoxList=[]
-
 var spells: Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -18,14 +17,16 @@ func _process(delta: float) -> void:
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
 		if spell.isReady():
-			if KeyboardGeneration.checkSpell(spell.getMask()):
+			var spellPos = KeyboardGeneration.checkSpell(spell.getMask())
+			if len(spellPos) > 0:
 				spell.triggerEffect()
-				spellBoxList[0][0].visible = true
+				for pos in spellPos:
+					spellBoxList[pos / 10][pos % 10].monitorable = true
+					spellBoxList[pos / 10][pos % 10].visible = true
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var keyLabel = event.as_text_key_label().to_upper()
-		print(keyLabel)
 		if event.pressed:
 			KeyboardGeneration.keyPressed(keyLabel)
 		else:
@@ -64,7 +65,8 @@ func generate_gameGrid():
 			spellBox.scale.y = 5
 			
 			spellBox.position = Vector2(posSpawn.x,posSpawn.y)
-			#spellBox.visible = false
+			spellBox.monitorable = false
+			spellBox.visible = false
 			spellBoxLine.append(spellBox)
 			
 			add_child(spellBox)

@@ -41,16 +41,16 @@ func convertMask(mask: String) -> Array:
 
 	return conv
 
-func checkSpell(mask) -> bool:
-	var converted = convertMask(mask)
+func checkSpell(mask) -> Array:
+	var converted: Array = convertMask(mask)
 	if len(pressedKeys) != len(converted):
-		return false
+		return []
 	
 	pressedKeys.sort()
 	
 	var offset = pressedKeys[0]
 	for onState in converted:
 		if !pressedKeys.has(offset + onState):
-			return false
+			return []
 	
-	return true
+	return converted.map(func(c): return c + offset)
