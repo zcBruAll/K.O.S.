@@ -37,8 +37,8 @@ func new_game():
 	print(spellBoxList)
 	
 func generate_gameGrid():
-	var PAD_RIGHT = 50
-	var SIZE = 150
+	var PAD_RIGHT = 70
+	var SIZE = 146
 	var positions = [$Spawn/Line1.position,$Spawn/Line2.position,$Spawn/Line3.position,$Spawn/Line4.position]
 	for j in range(4):
 		var spellBoxLine = []
@@ -49,22 +49,22 @@ func generate_gameGrid():
 			var posSpawn = positions[j]
 			match j:
 				0:
-					spellBox.scale.x = SIZE/2*60/100
-					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*50/100)+10*i
+					spellBox.scale.x = SIZE/2*78/100
+					posSpawn.x = posSpawn.x-PAD_RIGHT+10-((SIZE*70/100)+15)*i
 				1: 
-					spellBox.scale.x = SIZE/2*70/100
-					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*60/100)+10*i
+					spellBox.scale.x = SIZE/2*82/100
+					posSpawn.x = posSpawn.x-PAD_RIGHT-((SIZE*85/100)+4)*i
 				2:
 					spellBox.scale.x = SIZE/2*90/100
-					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*80/100)+10*i
+					posSpawn.x = posSpawn.x-PAD_RIGHT-((SIZE*90/100)+10)*i
 				3:
 					spellBox.scale.x = SIZE/2
-					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE+10)*i
+					posSpawn.x = posSpawn.x-PAD_RIGHT-((SIZE+10))*i
 						
 			spellBox.scale.y = 5
 			
 			spellBox.position = Vector2(posSpawn.x,posSpawn.y)
-			spellBox.visible = false
+			#spellBox.visible = false
 			spellBoxLine.append(spellBox)
 			
 			add_child(spellBox)
