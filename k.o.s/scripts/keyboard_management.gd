@@ -36,8 +36,9 @@ func convertMask(mask: String) -> Array:
 		for state in line.split(" "):
 			if (state == "1"):
 				conv.append(i)
-			i += 1
-		i += 8
+			if i % 10 != 9:
+				i += 1
+		i += 10 - i % 10
 
 	return conv
 

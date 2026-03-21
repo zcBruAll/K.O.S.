@@ -11,7 +11,12 @@ func _ready() -> void:
 	KeyboardGeneration.layout = "QWERTZ"
 	KeyboardGeneration.generate()
 	
+	spells.append(Spell.new("wind", 1, 2, func(): print("Winded")))
+	spells.append(Spell.new("hammer", 1, 2, func(): print("hammer")))
 	spells.append(Spell.new("shield", 1, 2, func(): print("Shielded")))
+	spells.append(Spell.new("log", 1, 2, func(): print("Logged")))
+	spells.append(Spell.new("bow", 1, 2, func(): print("Bowed")))
+	#spells.append(Spell.new("arrow", 1, 2, func(): print("Arrowed")))
 	new_game()
 
 func _process(delta: float) -> void:
@@ -23,6 +28,7 @@ func _process(delta: float) -> void:
 				spell.triggerEffect()
 				for pos in spellPos:
 					spellBoxList[pos / 10][pos % 10].setActive(spell._activeTime)
+				break
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
