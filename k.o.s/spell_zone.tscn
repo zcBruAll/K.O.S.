@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dysphksywfasx"]
 
-[ext_resource type="Script" path="res://spell_zone.gd" id="1_wxama"]
+[ext_resource type="Script" uid="uid://cwyhghx7s0yit" path="res://spell_zone.gd" id="1_wxama"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wxama"]
 
@@ -8,6 +8,8 @@
 size = Vector2(2, 2)
 
 [node name="spellZone" type="Area2D" unique_id=808331280]
+visible = false
+monitorable = false
 script = ExtResource("1_wxama")
 metadata/_edit_group_ = true
 

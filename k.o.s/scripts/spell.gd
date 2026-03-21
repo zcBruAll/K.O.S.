@@ -4,13 +4,15 @@ extends Object
 var _name: String
 var _cooldown: float
 var _cooldownTime: float
+var _activeTime: float
 var _mask: String
 var _effect: Callable
 
-func _init(name: String, cd: float, effect: Callable) -> void:
+func _init(name: String, cd: float, activeTime: float, effect: Callable) -> void:
 	_name = name
 	_cooldown = cd
 	_cooldownTime = cd
+	_activeTime = activeTime
 	
 	var file = FileAccess.open("res://resources/spells/" + name + ".txt", FileAccess.READ)
 	_mask = file.get_as_text()
