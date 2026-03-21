@@ -15,13 +15,16 @@ run/main_scene="uid://dtr673vopbdep"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+KeyboardGeneration="*uid://jxm3mje1jg7w"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/size/initial_position_type=0
-window/stretch/mode="canvas_items"
 
 [physics]
 
