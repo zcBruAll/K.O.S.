@@ -1,5 +1,5 @@
 extends Area2D
-class_name Base
+class_name test_area
 
 
 # Called when the node enters the scene tree for the first time.

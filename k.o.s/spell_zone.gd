@@ -1,6 +1,5 @@
 extends Area2D
-class_name Base
-
+class_name spell_zone
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

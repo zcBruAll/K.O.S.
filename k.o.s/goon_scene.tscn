@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bu0r0o0gvc3m7"]
 
-[ext_resource type="Texture2D" uid="uid://bh2glvrkckpv4" path="res://images/goon1.png" id="1_ej3ja"]
+[ext_resource type="Script" uid="uid://bvofmgkfydclh" path="res://goon_collision.gd" id="1_7h4yj"]
+[ext_resource type="Texture2D" uid="uid://cwlqtm8tlrqkj" path="res://images/goon1.png" id="1_ej3ja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sldrk"]
 size = Vector2(38.879982, 23.987778)
@@ -13,6 +14,7 @@ linear_damp_mode = 1
 
 [node name="Area2D" type="Area2D" parent="." unique_id=934090215]
 scale = Vector2(1.8, 1.8)
+script = ExtResource("1_7h4yj")
 
 [node name="GoonColl" type="CollisionShape2D" parent="Area2D" unique_id=1713166192]
 position = Vector2(1.9999993, -9.967134)
@@ -23,3 +25,15 @@ shape = SubResource("RectangleShape2D_sldrk")
 position = Vector2(9.999999, -58.999996)
 scale = Vector2(0.049560446, 0.07434067)
 texture = ExtResource("1_ej3ja")
+
+[node name="Health_bar" type="ProgressBar" parent="Area2D/Sprite2D" unique_id=66335076]
+offset_left = -997.65936
+offset_top = -1224.0946
+offset_right = 751.04694
+offset_bottom = -1007.3745
+max_value = 3.0
+step = 1.0
+show_percentage = false
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

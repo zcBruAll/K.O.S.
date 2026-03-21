@@ -3,13 +3,17 @@
 [ext_resource type="Script" uid="uid://bcft21dk2au12" path="res://K_O_S.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://bu0r0o0gvc3m7" path="res://goon_scene.tscn" id="2_d5x1h"]
 [ext_resource type="Script" uid="uid://b76wp17vbpn2b" path="res://base_collision.gd" id="3_d5x1h"]
-[ext_resource type="Texture2D" uid="uid://b3ccdq3sxrn8i" path="res://images/slantedBoard.png" id="4_8mm7a"]
+[ext_resource type="Texture2D" uid="uid://dmapk53b0itvd" path="res://images/slantedBoard.png" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dysphksywfasx" path="res://spell_zone.tscn" id="4_d5x1h"]
+[ext_resource type="Script" uid="uid://drtefalsp765i" path="res://test_area.gd" id="6_hq1ik"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2c62f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(395.52374, 1541)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfk4m"]
+size = Vector2(314, 316)
 
 [node name="K_O_S" type="Node2D" unique_id=1466758197]
 script = ExtResource("1_2c62f")
@@ -27,6 +31,7 @@ texture = ExtResource("4_8mm7a")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(110, 551)
+script = ExtResource("3_d5x1h")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Base" unique_id=1486696992]
@@ -38,7 +43,6 @@ texture = SubResource("PlaceholderTexture2D_2c62f")
 position = Vector2(-56, 31.5)
 shape = SubResource("RectangleShape2D_2c62f")
 debug_color = Color(0.91323286, 0.2920139, 0.054945193, 0.41960785)
-script = ExtResource("3_d5x1h")
 
 [node name="Spawn" type="Node2D" parent="." unique_id=668978580]
 
@@ -53,5 +57,12 @@ position = Vector2(1783, 612)
 
 [node name="Line4" type="Node2D" parent="Spawn" unique_id=1046114034]
 position = Vector2(1853, 778)
+
+[node name="test_area" type="Area2D" parent="." unique_id=785224973]
+script = ExtResource("6_hq1ik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_area" unique_id=1534538762]
+position = Vector2(1086, 518)
+shape = SubResource("RectangleShape2D_nfk4m")
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]

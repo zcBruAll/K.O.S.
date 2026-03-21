@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://dysphksywfasx"]
 
+[ext_resource type="Script" uid="uid://cwyhghx7s0yit" path="res://spell_zone.gd" id="1_wxama"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wxama"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j37y"]
 size = Vector2(2, 2)
 
 [node name="spellZone" type="Area2D" unique_id=808331280]
+script = ExtResource("1_wxama")
 metadata/_edit_group_ = true
 
 [node name="placeholder area" type="Sprite2D" parent="." unique_id=1377886481]
