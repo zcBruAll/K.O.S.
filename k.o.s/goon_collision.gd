@@ -29,4 +29,4 @@ func kill_enemy():
 
 func decrease_healthbar():
 	#print("Boi you should reduce, reuse, ekiki.")
-	$Sprite2D/Health_bar.value -= 1
+	$Health_bar.value -= 1

@@ -26,13 +26,15 @@ position = Vector2(9.999999, -58.999996)
 scale = Vector2(0.049560446, 0.07434067)
 texture = ExtResource("1_ej3ja")
 
-[node name="Health_bar" type="ProgressBar" parent="Area2D/Sprite2D" unique_id=66335076]
-offset_left = -997.65936
-offset_top = -1224.0946
-offset_right = 751.04694
-offset_bottom = -1007.3745
+[node name="Health_bar" type="ProgressBar" parent="Area2D" unique_id=66335076]
+modulate = Color(0.49019608, 0.76862746, 0.7372549, 1)
+offset_left = -19.444445
+offset_top = -142.22223
+offset_right = 28.333334
+offset_bottom = -133.88889
 max_value = 3.0
 step = 1.0
+value = 3.0
 show_percentage = false
 
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
