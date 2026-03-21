@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="K.O.S."
+run/main_scene="uid://dtr673vopbdep"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/initial_position_type=0
 
 [physics]
 
