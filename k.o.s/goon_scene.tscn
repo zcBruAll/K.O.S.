@@ -12,9 +12,11 @@ linear_velocity = Vector2(-100, 0)
 linear_damp_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1716304957]
-scale = Vector2(53.999973, 73.50002)
+position = Vector2(0, -61)
+scale = Vector2(100, 150)
 texture = SubResource("PlaceholderTexture2D_oej75")
 
-[node name="GoonColl" type="CollisionShape2D" parent="." unique_id=1713166192]
-position = Vector2(0, 0.25)
+[node name="GoonColl" type="CollisionShape2D" parent="Sprite2D" unique_id=1713166192]
+position = Vector2(0, 0.0034013595)
+scale = Vector2(0.018518528, 0.013605438)
 shape = SubResource("RectangleShape2D_sldrk")

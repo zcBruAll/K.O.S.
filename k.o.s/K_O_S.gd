@@ -61,14 +61,25 @@ func _on_goon_time_timeout() -> void:
 	var goon = goon_scene.instantiate()
 	# Randomize location from 1 of the 4 line
 	var spawnPos
+	var scalar
 	match randi()%4 :
-		0: spawnPos = $Spawn/Line1.position
-		1: spawnPos = $Spawn/Line2.position
-		2: spawnPos = $Spawn/Line3.position
-		3: spawnPos = $Spawn/Line4.position
-	
-	# Set the goon position
-	goon.position = spawnPos
-	
+		0:
+			scalar = 50
+			goon.position = $Spawn/Line1.position
+			goon.linear_velocity.x = -scalar
+			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+		1:
+			scalar = 60
+			goon.position = $Spawn/Line2.position
+			goon.linear_velocity.x = -scalar
+			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+		2:
+			scalar = 80
+			goon.position = $Spawn/Line3.position
+			goon.linear_velocity.x = -scalar
+			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+		3:
+			goon.position = $Spawn/Line4.position
+		
 	# Spawn the actual goon
 	add_child(goon)
