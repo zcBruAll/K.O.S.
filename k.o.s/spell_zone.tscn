@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dysphksywfasx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wxama"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j37y"]
+size = Vector2(2, 2)
+
+[node name="spellZone" type="Area2D" unique_id=808331280]
+metadata/_edit_group_ = true
+
+[node name="placeholder area" type="Sprite2D" parent="." unique_id=1377886481]
+position = Vector2(1.9073486e-06, 0)
+scale = Vector2(2, 2)
+texture = SubResource("PlaceholderTexture2D_wxama")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1722857696]
+shape = SubResource("RectangleShape2D_0j37y")
