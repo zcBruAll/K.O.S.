@@ -31,21 +31,32 @@ func new_game():
 	print(spellBoxList)
 	
 func generate_gameGrid():
-	var PAD_RIGHT = 90
-	var SIZE = 156
+	var PAD_RIGHT = 50
+	var SIZE = 150
 	var positions = [$Spawn/Line1.position,$Spawn/Line2.position,$Spawn/Line3.position,$Spawn/Line4.position]
 	for j in range(4):
 		var spellBoxLine = []
 		for i in range(9,-1,-1):
 			var spellBox = spell_zone.instantiate()
 			
-			# Config size
-			spellBox.scale.x = SIZE/2
-			spellBox.scale.y = SIZE/2
-			
-			# Config position
+			# Config size and pos
 			var posSpawn = positions[j]
-			posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE+10)*i
+			match j:
+				0:
+					spellBox.scale.x = SIZE/2*60/100
+					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*50/100)+10*i
+				1: 
+					spellBox.scale.x = SIZE/2*70/100
+					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*60/100)+10*i
+				2:
+					spellBox.scale.x = SIZE/2*90/100
+					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE*80/100)+10*i
+				3:
+					spellBox.scale.x = SIZE/2
+					posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE+10)*i
+						
+			spellBox.scale.y = 5
+			
 			spellBox.position = Vector2(posSpawn.x,posSpawn.y)
 			spellBox.visible = false
 			spellBoxLine.append(spellBox)
@@ -64,22 +75,25 @@ func _on_goon_time_timeout() -> void:
 	var scalar
 	match randi()%4 :
 		0:
-			scalar = 50
+			scalar = 70
 			goon.position = $Spawn/Line1.position
 			goon.linear_velocity.x = -scalar
 			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
 		1:
-			scalar = 60
+			scalar = 80
 			goon.position = $Spawn/Line2.position
 			goon.linear_velocity.x = -scalar
 			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+			goon.get_child(0).z_index = 3
 		2:
-			scalar = 80
+			scalar = 90
 			goon.position = $Spawn/Line3.position
 			goon.linear_velocity.x = -scalar
 			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+			goon.get_child(0).z_index = 5
 		3:
 			goon.position = $Spawn/Line4.position
-		
+			goon.get_child(0).z_index = 7
+			
 	# Spawn the actual goon
 	add_child(goon)

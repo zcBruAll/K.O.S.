@@ -43,7 +43,7 @@ script = ExtResource("3_d5x1h")
 [node name="Spawn" type="Node2D" parent="." unique_id=668978580]
 
 [node name="Line1" type="Node2D" parent="Spawn" unique_id=976116176]
-position = Vector2(1664, 342)
+position = Vector2(1658, 330)
 
 [node name="Line2" type="Node2D" parent="Spawn" unique_id=1793643740]
 position = Vector2(1719, 466)
