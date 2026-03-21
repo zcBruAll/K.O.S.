@@ -4,28 +4,22 @@ extends Node2D
 
 var spellBoxList=[]
 
-var spells: Array = []
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	KeyboardGeneration.layout = "QWERTZ"
 	KeyboardGeneration.generate()
-	
-	spells.append(Spell.new("shield", 1, func(): print("Shielded")))
 	new_game()
 
 func _process(delta: float) -> void:
-	for spell: Spell in spells:
-		spell.reduceCd(delta)
-		if spell.isReady():
-			if KeyboardGeneration.checkSpell(spell.getMask()):
-				spell.triggerEffect()
-				spellBoxList[0][0].visible = true
+	var file = FileAccess.open("res://resources/spells/" + "shield" + ".txt", FileAccess.READ)
+	var content = file.get_as_text()
+	if KeyboardGeneration.checkSpell(content):
+		print("Shield Spell")
+		spellBoxList[0][0].visible = true
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		var keyLabel = event.as_text_key_label().to_upper()
-		print(keyLabel)
+		var keyLabel = event.as_text_key_label()
 		if event.pressed:
 			KeyboardGeneration.keyPressed(keyLabel)
 		else:
