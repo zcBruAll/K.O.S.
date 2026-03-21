@@ -36,15 +36,15 @@ script = ExtResource("3_d5x1h")
 [node name="Spawn" type="Node2D" parent="." unique_id=668978580]
 
 [node name="Line1" type="Node2D" parent="Spawn" unique_id=976116176]
-position = Vector2(1920, 300)
+position = Vector2(1920, 280)
 
 [node name="Line2" type="Node2D" parent="Spawn" unique_id=1793643740]
-position = Vector2(1920, 450)
+position = Vector2(1920, 446)
 
 [node name="Line3" type="Node2D" parent="Spawn" unique_id=575004204]
-position = Vector2(1920, 600)
+position = Vector2(1920, 612)
 
 [node name="Line4" type="Node2D" parent="Spawn" unique_id=1046114034]
-position = Vector2(1920, 750)
+position = Vector2(1920, 778)
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]

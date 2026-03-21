@@ -2,24 +2,41 @@ extends Node2D
 @export var goon_scene: PackedScene
 @export var spell_zone: PackedScene
 
+var spellBoxList=[]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	KeyboardGeneration.layout = "QWERTZ"
+	KeyboardGeneration.generate()
 	new_game()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var file = FileAccess.open("res://resources/spells/" + "shield" + ".txt", FileAccess.READ)
+	var content = file.get_as_text()
+	if KeyboardGeneration.checkSpell(content):
+		print("Shield Spell")
+		spellBoxList[0][0].visible = true
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var keyLabel = event.as_text_key_label()
+		if event.pressed:
+			KeyboardGeneration.keyPressed(keyLabel)
+		else:
+			KeyboardGeneration.keyReleased(keyLabel)
 
 func new_game():
 	generate_gameGrid()
 	$GoonTime.start()
+	print(spellBoxList)
 	
 func generate_gameGrid():
 	var PAD_RIGHT = 90
-	var SIZE = 140
+	var SIZE = 156
 	var positions = [$Spawn/Line1.position,$Spawn/Line2.position,$Spawn/Line3.position,$Spawn/Line4.position]
 	for j in range(4):
-		for i in range(10,-1,-1):
+		var spellBoxLine = []
+		for i in range(9,-1,-1):
 			var spellBox = spell_zone.instantiate()
 			
 			# Config size
@@ -30,8 +47,11 @@ func generate_gameGrid():
 			var posSpawn = positions[j]
 			posSpawn.x = posSpawn.x-PAD_RIGHT-(SIZE+10)*i
 			spellBox.position = Vector2(posSpawn.x,posSpawn.y)
+			spellBox.visible = false
+			spellBoxLine.append(spellBox)
 			
 			add_child(spellBox)
+		spellBoxList.append(spellBoxLine)
 
 
 func _on_goon_time_timeout() -> void:
