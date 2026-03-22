@@ -2,6 +2,7 @@ extends Node2D
 @export var goon_scene: PackedScene
 @export var spell_zone: PackedScene
 @export var deaths: PackedScene
+@export var spellsParticles: PackedScene
 
 var spellBoxList=[]
 var spells: Array = []
@@ -36,8 +37,10 @@ func _process(delta: float) -> void:
 			if arrowTravelPos % 10 == 0 && arrowTravelPos != 0:
 				arrowTravel = false
 			else:
-				spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].setActive(arrowSpell._activeTime)
-				spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].check_overlapping()
+				var i = arrowTravelPos / 10
+				var j = arrowTravelPos % 10
+				spellBoxList[i][j].setActive(arrowSpell._activeTime)
+				spellBoxList[i][j].check_overlapping()
 	
 	if waitForArrow:
 		waitForArrowCd -= min(delta, waitForArrowCd)
@@ -48,8 +51,10 @@ func _process(delta: float) -> void:
 			arrowTravel = true
 			waitForArrow = false
 			arrowTravelPos = floor(spellPos[0] / 10) * 10
-			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].setActive(arrowSpell._activeTime)
-			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].check_overlapping()
+			var i = arrowTravelPos / 10
+			var j = arrowTravelPos % 10
+			spellBoxList[i][j].setActive(arrowSpell._activeTime)
+			spellBoxList[i][j].check_overlapping()
 			
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
@@ -64,9 +69,20 @@ func _process(delta: float) -> void:
 					waitForArrow = false
 				spell.triggerEffect()
 				for pos in spellPos:
-					spellBoxList[pos / 10][pos % 10].setActive(spell._activeTime)
-					spellBoxList[pos / 10][pos % 10].check_overlapping()
+					var i = pos / 10
+					var j = pos % 10
+					spellBoxList[i][j].setActive(spell._activeTime)
+					spellBoxList[i][j].check_overlapping()
+					activateSpellTile(spellBoxList[i][j].position, spell._activeTime)
 				break
+				
+func activateSpellTile(position, time) -> void:
+	var spellParticle: SpellParticles = spellsParticles.instantiate()
+	spellParticle.global_position = position
+	spellParticle.cooldown = time
+	spellParticle.lifetime = time / 1.2 - 0.25
+	spellParticle.emitting = true
+	add_child(spellParticle)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

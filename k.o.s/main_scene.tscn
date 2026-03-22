@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dysphksywfasx" path="res://spell_zone.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
 [ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
+[ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2c62f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -16,6 +19,7 @@ script = ExtResource("1_2c62f")
 goon_scene = ExtResource("2_d5x1h")
 spell_zone = ExtResource("4_d5x1h")
 deaths = ExtResource("4_hq1ik")
+spellsParticles = ExtResource("5_nfk4m")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(237.99997, 524)

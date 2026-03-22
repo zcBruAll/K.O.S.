@@ -9,7 +9,6 @@ func _ready() -> void:
 
 func setActive(time: float) -> void:
 	monitorable = true
-	visible = true
 	activeTime = time
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
