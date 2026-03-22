@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://dtr673vopbdep"]
 
-[ext_resource type="Script" uid="uid://bcft21dk2au12" path="res://K_O_S.gd" id="1_2c62f"]
+[ext_resource type="Script" uid="uid://ge3me500wi1t" path="res://K_O_S.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://bu0r0o0gvc3m7" path="res://goon_scene.tscn" id="2_d5x1h"]
 [ext_resource type="Script" uid="uid://b76wp17vbpn2b" path="res://base_collision.gd" id="3_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dmapk53b0itvd" path="res://images/slantedBoard.png" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dysphksywfasx" path="res://spell_zone.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2c62f"]
+[ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
-size = Vector2(395.52374, 1541)
+size = Vector2(706.27325, 1541)
 
 [node name="K_O_S" type="Node2D" unique_id=1466758197]
 script = ExtResource("1_2c62f")
@@ -23,17 +22,17 @@ position = Vector2(237.99997, 524)
 rotation = 0.061086524
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("3_d5x1h")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Base" unique_id=1486696992]
-position = Vector2(-56, 29.99997)
+position = Vector2(751.5468, 84.27638)
 rotation = -0.061086524
-scale = Vector2(396, 1541)
-texture = SubResource("PlaceholderTexture2D_2c62f")
+scale = Vector2(0.52593607, 0.5219707)
+texture = ExtResource("6_nfk4m")
 
 [node name="Coll" type="CollisionShape2D" parent="Base" unique_id=1164302551]
-position = Vector2(-56, 31.5)
-rotation = 0.34906584
+position = Vector2(-202.00464, -21.641296)
+rotation = 0.3490658
+scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_2c62f")
 debug_color = Color(0.91323286, 0.2920139, 0.054945193, 0.41960785)
 
@@ -69,5 +68,9 @@ position = Vector2(1783, 606)
 
 [node name="Line4" type="Node2D" parent="Spawn" unique_id=1046114034]
 position = Vector2(1853, 758)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1172756722]
+position = Vector2(975, 545)
+zoom = Vector2(0.9, 0.9)
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]
