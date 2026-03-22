@@ -104,7 +104,7 @@ func _process(delta: float) -> void:
 			add_child(ap)
 			spellBoxList[i][j].setActive(arrowSpell._activeTime)
 			spellBoxList[i][j].check_overlapping()
-			randomizeChoosenSpell(2.0)
+			randomizeChoosenSpell(0.8)
 			
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
 					else:
 						waitForArrow = false
 					spell.triggerEffect()
-					randomizeChoosenSpell(2.0)
+					randomizeChoosenSpell(0.8)
 					for pos in spellPos:
 						var i = pos / 10
 						var j = pos % 10
@@ -145,7 +145,7 @@ func _process(delta: float) -> void:
 							spellBoxList[i][j].blocking = true
 						spellBoxList[i][j].setActive(spell._activeTime)
 						spellBoxList[i][j].check_overlapping()
-						randomizeChoosenSpell(2.0)
+						randomizeChoosenSpell(0.8)
 						activateSpellTile(spellBoxList[i][j].position, spell._activeTime)
 					break
 				else:
@@ -176,26 +176,33 @@ func new_game():
 func randomizeChoosenSpell(n:float):
 	for spell in spells :
 		spell.setSelectedState(false)
+	
 	match selectedSpell.type:
 		"hammer":
 			selectedSpell.play_tap_anim()
+			print("Type : hammer")
 		"wind":
 			selectedSpell.play_wind_anim()
+			print("Type : wind")
 		"log":
 			selectedSpell.play_spear_anim()	
-		_: selectedSpell.play_spear_anim()		
+			print("Type : bow")
 			
-	selectedSpell.type = spellDict[randi()%5]
 	await get_tree().create_timer(n).timeout
+	selectedSpell.type = spellDict[randi()%5]
+	
 	for spell in spells:
 		if spell._name == selectedSpell.type: spell.setSelectedState(true)
 	selectedSpell.spellSprite.texture = load('res://images/'+selectedSpell.type+'.png')
+	selectedSpell.play_idle()
 	#selectedSpell.spellSprite.scale = Vector2(0.2,0.2)
 	
 	
 func on_spell_anim_finished(anim_name: StringName):
 	cam2d.add_trauma(0.5)
 	selectedSpell.reset()
+	
+	
 
 	
 func generate_gameGrid():

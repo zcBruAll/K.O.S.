@@ -8,6 +8,9 @@ var type = ""
 func _ready() -> void:
 	anim_player.play("idle")
 	
+
+func play_idle() -> void:
+	anim_player.play("idle")
 	
 func play_tap_anim() -> void:
 	anim_player.play("hammer_tap")
