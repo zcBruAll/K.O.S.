@@ -85,27 +85,54 @@ func _on_goon_time_timeout() -> void:
 	# Randomize location from 1 of the 4 line
 	var spawnPos
 	var scalar
+	var texture
+
+	match randi()%2 :
+		0:
+			texture = load('res://images/goon1.png')
+			goon.get_child(0).get_child(0).texture = texture
+			goon.get_child(0).type = 0
+		1:
+			texture = load('res://images/goon2.png')
+			goon.get_child(0).get_child(0).texture = texture
+			goon.get_child(0).type = 1
+		
 	match randi()%4 :
 		0:
 			scalar = 70
 			goon.position = $Spawn/Line1.position
 			goon.linear_velocity.x = -scalar
-			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+			if goon.get_child(0).type == 1:
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100*2/3)
+			else :
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
 		1:
 			scalar = 80
 			goon.position = $Spawn/Line2.position
 			goon.linear_velocity.x = -scalar
-			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+			if goon.get_child(0).type == 1:
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100*2/3)
+			else :
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
 			goon.get_child(0).z_index = 3
 		2:
 			scalar = 90
 			goon.position = $Spawn/Line3.position
 			goon.linear_velocity.x = -scalar
-			goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
+			if goon.get_child(0).type == 1:
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100*2/3)
+			else :
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x*scalar/100,goon.get_child(0).scale.y*scalar/100)
 			goon.get_child(0).z_index = 5
 		3:
 			goon.position = $Spawn/Line4.position
 			goon.get_child(0).z_index = 7
+			if goon.get_child(0).type == 1:
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x,goon.get_child(0).scale.y*2/3)
+			else :
+				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x,goon.get_child(0).scale.y)
+	
+
 			
 	# Spawn the actual goon
 	add_child(goon)

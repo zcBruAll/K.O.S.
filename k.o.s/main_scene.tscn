@@ -47,15 +47,15 @@ texture = ExtResource("4_8mm7a")
 [node name="Spawn" type="Node2D" parent="." unique_id=668978580]
 
 [node name="Line1" type="Node2D" parent="Spawn" unique_id=976116176]
-position = Vector2(1658, 330)
+position = Vector2(1658, 328)
 
 [node name="Line2" type="Node2D" parent="Spawn" unique_id=1793643740]
-position = Vector2(1719, 466)
+position = Vector2(1719, 461)
 
 [node name="Line3" type="Node2D" parent="Spawn" unique_id=575004204]
-position = Vector2(1783, 612)
+position = Vector2(1783, 606)
 
 [node name="Line4" type="Node2D" parent="Spawn" unique_id=1046114034]
-position = Vector2(1853, 778)
+position = Vector2(1853, 758)
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]

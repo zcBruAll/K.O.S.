@@ -1,6 +1,7 @@
 extends Area2D
 
 var health = 3
+var type
 
 
 # Called when the node enters the scene tree for the first time.
