@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://cxfxelj48yync" path="res://selectedSpell.tscn" id="8_7ycvg"]
 [ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
+[ext_resource type="AudioStream" uid="uid://cmdothxr7rirx" path="res://resources/audio/sfx/wall.mp3" id="11_qwutr"]
+[ext_resource type="AudioStream" uid="uid://cffhfk7jxnnk5" path="res://resources/audio/KOS.wav" id="12_671wp"]
+[ext_resource type="AudioStream" uid="uid://grmn3ryxvks5" path="res://resources/audio/sfx/wind.mp3" id="13_mo76n"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
@@ -75,6 +78,10 @@ value = 100.0
 position = Vector2(-31.999973, -355.00006)
 scale = Vector2(0.1, 0.1)
 
+[node name="Base_hit" type="AudioStreamPlayer2D" parent="Base" unique_id=1065569021]
+position = Vector2(456.00003, -204)
+stream = ExtResource("11_qwutr")
+
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
 wait_time = 1.2
 one_shot = true
@@ -118,5 +125,11 @@ layout_mode = 2
 text = "YOU DIED"
 label_settings = SubResource("LabelSettings_66tet")
 horizontal_alignment = 1
+
+[node name="Theme_music" type="AudioStreamPlayer2D" parent="." unique_id=1740378562]
+stream = ExtResource("12_671wp")
+
+[node name="spell_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1966259632]
+stream = ExtResource("13_mo76n")
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]

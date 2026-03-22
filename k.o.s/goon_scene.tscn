@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bvofmgkfydclh" path="res://goon_collision.gd" id="1_7h4yj"]
 [ext_resource type="Texture2D" uid="uid://po4caie5ny46" path="res://images/goon3.png" id="2_jcnpj"]
 [ext_resource type="Script" uid="uid://dl8l4w3c1pse3" path="res://sprite_2d.gd" id="3_jcnpj"]
+[ext_resource type="AudioStream" uid="uid://b01whpukfcoft" path="res://resources/audio/sfx/Rollin.mp3" id="4_nflvx"]
+[ext_resource type="AudioStream" uid="uid://dbb05mnvyjod1" path="res://resources/audio/sfx/goon_hit_1-07.mp3" id="5_ne4rq"]
+[ext_resource type="AudioStream" uid="uid://22x2kony0o8y" path="res://resources/audio/sfx/goon_death-02.mp3" id="6_gto7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sldrk"]
 size = Vector2(46.43998, 23.987778)
@@ -41,6 +44,17 @@ step = 1.0
 value = 3.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="rollin" type="AudioStreamPlayer2D" parent="Area2D" unique_id=1016634046]
+stream = ExtResource("4_nflvx")
+volume_db = -9.605
+parameters/looping = true
+
+[node name="Hit_sound" type="AudioStreamPlayer2D" parent="Area2D" unique_id=747228919]
+stream = ExtResource("5_ne4rq")
+
+[node name="Goon_death" type="AudioStreamPlayer2D" parent="Area2D" unique_id=1631063911]
+stream = ExtResource("6_gto7b")
 
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

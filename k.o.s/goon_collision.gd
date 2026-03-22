@@ -8,7 +8,7 @@ var oldArea: spell_zone
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$rollin.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,9 +31,11 @@ func _on_area_entered(area: Area2D) -> void:
 func inflict_damage(n = 1):
 	health -= n
 	$Health_bar.value -= n
+	$Hit_sound.play()
 	if health <= 0:
 		kill_enemy()
 
 func kill_enemy():
+	$Goon_death.play()
 	get_parent().get_parent().spawnDeathParticles(self)
 	queue_free()
