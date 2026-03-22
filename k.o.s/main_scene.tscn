@@ -7,35 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
-[ext_resource type="PackedScene" uid="uid://ltolkrm0slp3" path="res://ArrowParticle.tscn" id="6_wr18j"]
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://cxfxelj48yync" path="res://selectedSpell.tscn" id="8_7ycvg"]
-[ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
-[ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
-
-[sub_resource type="GDScript" id="GDScript_7ycvg"]
-script/source = "extends PanelContainer
-class_name end_screen
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func set_end_screen():
-	visible
-"
-
-[sub_resource type="LabelSettings" id="LabelSettings_66tet"]
-font = ExtResource("9_7ycvg")
-font_size = 95
 
 [node name="K_O_S" type="Node2D" unique_id=1466758197]
 script = ExtResource("1_2c62f")
@@ -43,7 +20,6 @@ goon_scene = ExtResource("2_d5x1h")
 spell_zone = ExtResource("4_d5x1h")
 deaths = ExtResource("4_hq1ik")
 spellsParticles = ExtResource("5_nfk4m")
-arrowParticles = ExtResource("6_wr18j")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(237.99997, 524)
@@ -64,10 +40,10 @@ debug_color = Color(0.91323286, 0.2920139, 0.054945193, 0.41960785)
 
 [node name="Base_health_bar" type="ProgressBar" parent="Base" unique_id=1452460276]
 modulate = Color(0.49019608, 0.76862746, 0.7372549, 1)
-offset_left = 388.00006
-offset_top = -554.00006
-offset_right = 1720.0
-offset_bottom = -473.00006
+offset_left = -195.066
+offset_top = -190.02946
+offset_right = 73.71892
+offset_bottom = 136.31526
 step = 1.0
 value = 100.0
 
@@ -102,20 +78,6 @@ position = Vector2(1853, 758)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1172756722]
 position = Vector2(981, 492)
 zoom = Vector2(0.9, 0.9)
-
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1763673109]
-visible = false
-offset_left = 694.0
-offset_top = 320.0
-offset_right = 1265.0
-offset_bottom = 562.0
-script = SubResource("GDScript_7ycvg")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="PanelContainer" unique_id=1049422586]
-layout_mode = 2
-text = "YOU DIED"
-label_settings = SubResource("LabelSettings_66tet")
-horizontal_alignment = 1
+script = ExtResource("10_wr18j")
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]
