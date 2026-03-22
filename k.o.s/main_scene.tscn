@@ -35,6 +35,16 @@ rotation = 0.34906584
 shape = SubResource("RectangleShape2D_2c62f")
 debug_color = Color(0.91323286, 0.2920139, 0.054945193, 0.41960785)
 
+[node name="Base_health_bar" type="ProgressBar" parent="Base" unique_id=1452460276]
+modulate = Color(0.49019608, 0.76862746, 0.7372549, 1)
+offset_left = -200.57025
+offset_top = -216.15869
+offset_right = 107.798096
+offset_bottom = 158.24622
+rotation = -0.061086524
+step = 1.0
+value = 100.0
+
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
 wait_time = 1.2
 one_shot = true

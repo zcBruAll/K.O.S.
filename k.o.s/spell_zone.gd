@@ -24,5 +24,4 @@ func check_overlapping():
 	var overlapping_areas = get_overlapping_areas()
 	for i in overlapping_areas:
 		if i is Goon:
-			print("ASLDFhasj udhbgukjasgbdflkgaslkdjghbfkuj")
 			i.inflict_damage()

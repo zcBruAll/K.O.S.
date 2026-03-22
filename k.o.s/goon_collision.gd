@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Base:
+		area.inflict_damage(3)
 		kill_enemy()
 	if area is spell_zone:
 		inflict_damage(1)
