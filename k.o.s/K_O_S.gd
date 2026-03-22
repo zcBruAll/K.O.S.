@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 				spell.triggerEffect()
 				for pos in spellPos:
 					spellBoxList[pos / 10][pos % 10].setActive(spell._activeTime)
+					spellBoxList[pos / 10][pos % 10].check_overlapping()
 				break
 
 func _input(event: InputEvent) -> void:

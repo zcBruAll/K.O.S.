@@ -1,8 +1,8 @@
 extends Area2D
+class_name Goon
 
 var health = 3
 var type
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,17 +17,14 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Base:
 		kill_enemy()
 	if area is spell_zone:
-		decrease_healthbar()
-		health -= 1
+		inflict_damage(1)
+		
+		
+func inflict_damage(n = 1):
+	health -= n
+	$Health_bar.value -= n
 	if health <= 0:
 		kill_enemy()
-	#if area is test_area:
-	#	decrease_healthbar()
-		
-		
+
 func kill_enemy():
 	queue_free()
-
-func decrease_healthbar():
-	#print("Boi you should reduce, reuse, ekiki.")
-	$Health_bar.value -= 1
