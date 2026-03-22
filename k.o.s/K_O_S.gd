@@ -3,8 +3,16 @@ extends Node2D
 @export var spell_zone: PackedScene
 
 var spellBoxList=[]
-var activeSpellBoxes=[]
 var spells: Array = []
+
+var waitForArrow: bool = false
+var waitForArrowCd: float = 2
+
+var arrowTravel: bool = false
+var arrowTravelPos: int = 0
+var arrowTravelCd = 0.25
+
+var arrowSpell: Spell = Spell.new("arrow", 0, 0.5, func(): print("Arrowed"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,11 +28,38 @@ func _ready() -> void:
 	new_game()
 
 func _process(delta: float) -> void:
+	if arrowTravel:
+		arrowTravelCd -= min(delta, arrowTravelCd)
+		if arrowTravelCd <= 0:
+			arrowTravelPos += 1
+			arrowTravelCd = 0.25
+			if arrowTravelPos % 10 == 0 && arrowTravelPos != 0:
+				arrowTravel = false
+			else:
+				spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].setActive(arrowSpell._activeTime)
+				spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].check_overlapping()
+	
+	if waitForArrow:
+		waitForArrowCd -= min(delta, waitForArrowCd)
+		if waitForArrowCd <= 0:
+			waitForArrow = false
+		var spellPos = KeyboardGeneration.checkSpell(arrowSpell.getMask())
+		if len(spellPos) == 1:
+			arrowTravel = true
+			arrowTravelPos = spellPos[0]
+			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].setActive(arrowSpell._activeTime)
+			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].check_overlapping()
+			
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
 		if spell.isReady():
 			var spellPos = KeyboardGeneration.checkSpell(spell.getMask())
 			if len(spellPos) > 0:
+				if spell._name == "bow":
+					waitForArrow = true
+					waitForArrowCd = 2
+				else:
+					waitForArrow = false
 				spell.triggerEffect()
 				for pos in spellPos:
 					spellBoxList[pos / 10][pos % 10].setActive(spell._activeTime)
