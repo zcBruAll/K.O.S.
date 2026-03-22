@@ -46,7 +46,8 @@ func _process(delta: float) -> void:
 		var spellPos = KeyboardGeneration.checkSpell(arrowSpell.getMask())
 		if len(spellPos) == 1:
 			arrowTravel = true
-			arrowTravelPos = spellPos[0]
+			waitForArrow = false
+			arrowTravelPos = floor(spellPos[0] / 10) * 10
 			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].setActive(arrowSpell._activeTime)
 			spellBoxList[arrowTravelPos / 10][arrowTravelPos % 10].check_overlapping()
 			
@@ -58,6 +59,7 @@ func _process(delta: float) -> void:
 				if spell._name == "bow":
 					waitForArrow = true
 					waitForArrowCd = 2
+					break
 				else:
 					waitForArrow = false
 				spell.triggerEffect()
@@ -116,6 +118,7 @@ func spawnDeathParticles(goon: Goon) -> void:
 	var deathParticle: DeathParticle = deaths.instantiate()
 	deathParticle.global_position = goon.get_parent().position
 	deathParticle.z_index = goon.z_index + 1
+	deathParticle.global_position.y -= 50
 	deathParticle.emitting = true
 	add_child(deathParticle)
 
