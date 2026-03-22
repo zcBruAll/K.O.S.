@@ -7,11 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
-[ext_resource type="PackedScene" uid="uid://ltolkrm0slp3" path="res://ArrowParticle.tscn" id="6_wr18j"]
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://cxfxelj48yync" path="res://selectedSpell.tscn" id="8_7ycvg"]
 [ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
-[ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -43,7 +42,6 @@ goon_scene = ExtResource("2_d5x1h")
 spell_zone = ExtResource("4_d5x1h")
 deaths = ExtResource("4_hq1ik")
 spellsParticles = ExtResource("5_nfk4m")
-arrowParticles = ExtResource("6_wr18j")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(237.99997, 524)
@@ -102,6 +100,7 @@ position = Vector2(1853, 758)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1172756722]
 position = Vector2(981, 492)
 zoom = Vector2(0.9, 0.9)
+script = ExtResource("10_wr18j")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1763673109]
 visible = false
