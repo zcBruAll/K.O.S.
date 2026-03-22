@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://cxfxelj48yync" path="res://selectedSpell.tscn" id="8_7ycvg"]
 [ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 [ext_resource type="AudioStream" uid="uid://cmdothxr7rirx" path="res://resources/audio/sfx/wall.mp3" id="11_qwutr"]
 [ext_resource type="AudioStream" uid="uid://cffhfk7jxnnk5" path="res://resources/audio/KOS.wav" id="12_671wp"]
 [ext_resource type="AudioStream" uid="uid://grmn3ryxvks5" path="res://resources/audio/sfx/wind.mp3" id="13_mo76n"]
-[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -83,7 +83,7 @@ position = Vector2(456.00003, -204)
 stream = ExtResource("11_qwutr")
 
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
-wait_time = 1.2
+wait_time = 5.0
 one_shot = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2063303949]
