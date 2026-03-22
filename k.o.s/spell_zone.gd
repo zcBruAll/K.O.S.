@@ -2,6 +2,7 @@ extends Area2D
 class_name spell_zone
 
 var activeTime: float = 0
+var blocking: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 	if activeTime <= 0: return
 	activeTime -= min(delta, activeTime)
 	if activeTime <= 0: 
+		blocking = false
 		monitorable = false
 		visible = false
 
@@ -23,4 +25,7 @@ func check_overlapping():
 	var overlapping_areas = get_overlapping_areas()
 	for i in overlapping_areas:
 		if i is Goon:
-			i.inflict_damage()
+			if !blocking:
+				i.inflict_damage()
+			else:
+				i.kill_enemy()
