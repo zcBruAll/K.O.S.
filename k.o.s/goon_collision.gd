@@ -22,13 +22,13 @@ func _on_area_entered(area: Area2D) -> void:
 		oldArea = area
 		get_parent().linear_velocity.x = 0
 	elif area is spell_zone:
-		inflict_damage(2)
+		inflict_damage(3)
 	elif area is Base:
 		area.inflict_damage(1)
 		queue_free()
 		
 		
-func inflict_damage(n = 1):
+func inflict_damage(n = 3):
 	health -= n
 	$Health_bar.value -= n
 	$Hit_sound.play()

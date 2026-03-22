@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	pass
 
 func set_end_screen():
-	visible
+	visible = 1
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_66tet"]
@@ -83,7 +83,7 @@ position = Vector2(456.00003, -204)
 stream = ExtResource("11_qwutr")
 
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
-wait_time = 5.0
+wait_time = 1.265
 one_shot = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2063303949]
@@ -113,6 +113,8 @@ script = ExtResource("10_wr18j")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1763673109]
 visible = false
+light_mask = 524288
+visibility_layer = 524288
 offset_left = 694.0
 offset_top = 320.0
 offset_right = 1265.0
@@ -121,6 +123,8 @@ script = SubResource("GDScript_7ycvg")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="PanelContainer" unique_id=1049422586]
+light_mask = 524288
+visibility_layer = 524288
 layout_mode = 2
 text = "YOU DIED"
 label_settings = SubResource("LabelSettings_66tet")

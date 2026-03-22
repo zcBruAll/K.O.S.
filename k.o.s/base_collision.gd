@@ -19,5 +19,5 @@ func inflict_damage(n):
 	$Base_hit.play()
 	if health <= 0:
 		#queue_free()
-		get_parent().get_child(2).visible = 1
 		get_tree().paused = true
+		$"../PanelContainer".visible = true
