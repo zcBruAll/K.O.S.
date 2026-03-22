@@ -3,6 +3,8 @@ extends Node2D
 @export var spell_zone: PackedScene
 @export var deaths: PackedScene
 @export var spellsParticles: PackedScene
+@export var arrowParticles: PackedScene
+
 
 @onready var selectedSpell: SelectedSpell = $Base/SelectedSpell
 @onready var cam2d = $Camera2D
@@ -89,6 +91,10 @@ func _process(delta: float) -> void:
 			arrowTravelPos = floor(spellPos[0] / 10) * 10
 			var i = arrowTravelPos / 10
 			var j = arrowTravelPos % 10
+			var ap: ArrowParticle = arrowParticles.instantiate()
+			ap.global_position = spellBoxList[i][j].position
+			ap.emitting = true
+			add_child(ap)
 			spellBoxList[i][j].setActive(arrowSpell._activeTime)
 			spellBoxList[i][j].check_overlapping()
 			randomizeChoosenSpell(2.0)
@@ -153,10 +159,11 @@ func randomizeChoosenSpell(n:float):
 		"wind":
 			selectedSpell.play_wind_anim()
 		"log":
-			selectedSpell.play_spear_anim()			
+			selectedSpell.play_spear_anim()	
+		_: selectedSpell.play_spear_anim()		
 			
-	await get_tree().create_timer(n).timeout
 	selectedSpell.type = spellDict[randi()%5]
+	await get_tree().create_timer(n).timeout
 	for spell in spells:
 		if spell._name == selectedSpell.type: spell.setSelectedState(true)
 	selectedSpell.spellSprite.texture = load('res://images/'+selectedSpell.type+'.png')
