@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6xe6x0wuot44"
+path="res://.godot/imported/Meh tower.mp3-c55b0fe845a7b015bb365d5394ddf02d.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/sfx/Meh tower.mp3"
+dest_files=["res://.godot/imported/Meh tower.mp3-c55b0fe845a7b015bb365d5394ddf02d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

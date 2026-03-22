@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5gv4jsrhcnpt"
+path="res://.godot/imported/Ball tower.mp3-e25aca2a08f5ad4116f5cb544cb0b4b5.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/sfx/Ball tower.mp3"
+dest_files=["res://.godot/imported/Ball tower.mp3-e25aca2a08f5ad4116f5cb544cb0b4b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qn0a4e3csftl"
+path="res://.godot/imported/Bow string.mp3-0a37c3aeb8b8202fd7ed78d142a63b38.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/sfx/Bow string.mp3"
+dest_files=["res://.godot/imported/Bow string.mp3-0a37c3aeb8b8202fd7ed78d142a63b38.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
