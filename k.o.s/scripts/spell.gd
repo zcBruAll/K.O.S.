@@ -7,6 +7,7 @@ var _cooldownTime: float
 var _activeTime: float
 var _mask: String
 var _effect: Callable
+var _selectedSpell : bool = false
 
 func _init(name: String, cd: float, activeTime: float, effect: Callable) -> void:
 	_name = name
@@ -26,6 +27,9 @@ func reduceCd(delta: float) -> void:
 
 func isReady() -> bool:
 	return _cooldownTime <= 0
+	
+func setSelectedState(state:bool) -> void:
+	_selectedSpell = state
 
 func getMask() -> String:
 	return _mask

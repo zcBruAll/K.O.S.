@@ -3,13 +3,11 @@
 [ext_resource type="Script" uid="uid://ge3me500wi1t" path="res://K_O_S.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://bu0r0o0gvc3m7" path="res://goon_scene.tscn" id="2_d5x1h"]
 [ext_resource type="Script" uid="uid://b76wp17vbpn2b" path="res://base_collision.gd" id="3_d5x1h"]
-[ext_resource type="Texture2D" uid="uid://dmapk53b0itvd" path="res://images/slantedBoard.png" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dysphksywfasx" path="res://spell_zone.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
-[ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
 [ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2c62f"]
+[ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
+[ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -23,41 +21,44 @@ spellsParticles = ExtResource("5_nfk4m")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(237.99997, 524)
-rotation = 0.061086524
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("3_d5x1h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Base" unique_id=1486696992]
 position = Vector2(751.5468, 84.27638)
-rotation = -0.061086524
 scale = Vector2(0.52593607, 0.5219707)
 texture = ExtResource("6_nfk4m")
 
 [node name="Coll" type="CollisionShape2D" parent="Base" unique_id=1164302551]
 position = Vector2(-202.00464, -21.641296)
-rotation = 0.3490658
+rotation = 0.41015238
 scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_2c62f")
 debug_color = Color(0.91323286, 0.2920139, 0.054945193, 0.41960785)
 
 [node name="Base_health_bar" type="ProgressBar" parent="Base" unique_id=1452460276]
 modulate = Color(0.49019608, 0.76862746, 0.7372549, 1)
-offset_left = -200.57025
-offset_top = -216.15869
-offset_right = 107.798096
-offset_bottom = 158.24622
-rotation = -0.061086524
+offset_left = -195.066
+offset_top = -190.02946
+offset_right = 73.71892
+offset_bottom = 136.31526
 step = 1.0
 value = 100.0
+
+[node name="selectedSpell" type="Area2D" parent="Base" unique_id=1880112619]
+position = Vector2(-22, -274)
+
+[node name="Sprite2D" type="Sprite2D" parent="Base/selectedSpell" unique_id=286894438]
 
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
 wait_time = 1.2
 one_shot = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2063303949]
-position = Vector2(1078.0001, 535)
+position = Vector2(1201.9999, 634)
+rotation = 0.0006033558
 scale = Vector2(0.70300007, 0.6320001)
-texture = ExtResource("4_8mm7a")
+texture = ExtResource("7_nfk4m")
 
 [node name="Spawn" type="Node2D" parent="." unique_id=668978580]
 
@@ -74,7 +75,7 @@ position = Vector2(1783, 606)
 position = Vector2(1853, 758)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1172756722]
-position = Vector2(975, 545)
+position = Vector2(981, 492)
 zoom = Vector2(0.9, 0.9)
 
 [connection signal="timeout" from="GoonTime" to="." method="_on_goon_time_timeout"]

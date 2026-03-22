@@ -6,6 +6,7 @@ extends Node2D
 
 var spellBoxList=[]
 var spells: Array = []
+var selectedSpell
 
 var waitForArrow: bool = false
 var waitForArrowCd: float = 2
@@ -15,6 +16,13 @@ var arrowTravelPos: int = 0
 var arrowTravelCd = 0.25
 
 var arrowSpell: Spell = Spell.new("arrow", 0, 0.5, func(): print("Arrowed"))
+var spellDict = {
+	0:"hammer",
+	1:"log",
+	2:"wind",
+	3:"shield",
+	4:"bow"
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -55,26 +63,31 @@ func _process(delta: float) -> void:
 			var j = arrowTravelPos % 10
 			spellBoxList[i][j].setActive(arrowSpell._activeTime)
 			spellBoxList[i][j].check_overlapping()
+			randomizeChoosenSpell()
 			
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
 		if spell.isReady():
-			var spellPos = KeyboardGeneration.checkSpell(spell.getMask())
-			if len(spellPos) > 0:
-				if spell._name == "bow":
-					waitForArrow = true
-					waitForArrowCd = 2
+			if spell._selectedSpell :
+				var spellPos = KeyboardGeneration.checkSpell(spell.getMask())
+				if len(spellPos) > 0:
+					if spell._name == "bow":
+						waitForArrow = true
+						waitForArrowCd = 2
+						break
+					else:
+						waitForArrow = false
+					spell.triggerEffect()
+					for pos in spellPos:
+						var i = pos / 10
+						var j = pos % 10
+						spellBoxList[i][j].setActive(spell._activeTime)
+						spellBoxList[i][j].check_overlapping()
+						randomizeChoosenSpell()
+						activateSpellTile(spellBoxList[i][j].position, spell._activeTime)
 					break
 				else:
 					waitForArrow = false
-				spell.triggerEffect()
-				for pos in spellPos:
-					var i = pos / 10
-					var j = pos % 10
-					spellBoxList[i][j].setActive(spell._activeTime)
-					spellBoxList[i][j].check_overlapping()
-					activateSpellTile(spellBoxList[i][j].position, spell._activeTime)
-				break
 				
 func activateSpellTile(position, time) -> void:
 	var spellParticle: SpellParticles = spellsParticles.instantiate()
@@ -95,7 +108,16 @@ func _input(event: InputEvent) -> void:
 func new_game():
 	generate_gameGrid()
 	$GoonTime.start()
-	print(spellBoxList)
+	randomizeChoosenSpell()
+
+
+func randomizeChoosenSpell():
+	selectedSpell = spellDict[randi()%5]
+	for spell in spells:
+		if spell._name == selectedSpell: spell.setSelectedState(true)
+		else : spell.setSelectedState(false)
+	$Base/selectedSpell/Sprite2D.texture = load('res://images/'+selectedSpell+'.png')
+	$Base/selectedSpell/Sprite2D.scale = Vector2(0.1,0.1)
 	
 func generate_gameGrid():
 	var PAD_RIGHT = 70
