@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cmdothxr7rirx" path="res://resources/audio/sfx/wall.mp3" id="11_qwutr"]
 [ext_resource type="AudioStream" uid="uid://cffhfk7jxnnk5" path="res://resources/audio/KOS.wav" id="12_671wp"]
 [ext_resource type="AudioStream" uid="uid://grmn3ryxvks5" path="res://resources/audio/sfx/wind.mp3" id="13_mo76n"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="10_wr18j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -106,6 +107,7 @@ position = Vector2(1853, 758)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1172756722]
 position = Vector2(981, 492)
 zoom = Vector2(0.9, 0.9)
+script = ExtResource("10_wr18j")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1763673109]
 visible = false

@@ -12,6 +12,18 @@ func _ready() -> void:
 func play_tap_anim() -> void:
 	anim_player.play("hammer_tap")
 	
+func play_wind_anim() -> void:
+	anim_player.play("wind_slide")
+	
+func play_spear_anim() -> void:
+	anim_player.play("spear_tap")
+	
+func reset() -> void:
+	spellSprite.position = Vector2(0.0,0.0)
+	spellSprite.rotation = 0.0
+	spellSprite.scale = Vector2(1.0, 1.0)
+	
 
+	
 	
 	

@@ -4,7 +4,8 @@ extends Node2D
 @export var deaths: PackedScene
 @export var spellsParticles: PackedScene
 
-@onready var selectedSpell = $Base/SelectedSpell
+@onready var selectedSpell: SelectedSpell = $Base/SelectedSpell
+@onready var cam2d = $Camera2D
 
 var bow_sfx = preload("res://resources/audio/sfx/bow.mp3")
 var shield_sfx = preload("res://resources/audio/sfx/shield.mp3")
@@ -66,6 +67,8 @@ func _ready() -> void:
 	spells.append(Spell.new("shield", 0.2, 4, blockGoons))
 	spells.append(Spell.new("log", 0.2, 0.8, func(): print("Logged")))
 	spells.append(Spell.new("bow", 0.2, 0.8, func(): print("Bowed")))
+	
+	(selectedSpell.anim_player as AnimationPlayer).animation_finished.connect(on_spell_anim_finished)
 	new_game()
 
 func _process(delta: float) -> void:
@@ -126,7 +129,7 @@ func _process(delta: float) -> void:
 					else:
 						waitForArrow = false
 					spell.triggerEffect()
-					randomizeChoosenSpell(2)
+					randomizeChoosenSpell(2.0)
 					for pos in spellPos:
 						var i = pos / 10
 						var j = pos % 10
@@ -171,18 +174,22 @@ func randomizeChoosenSpell(n:float):
 		"hammer":
 			selectedSpell.play_tap_anim()
 		"wind":
-			pass # TODO: replace with anim
+			selectedSpell.play_wind_anim()
+		"log":
+			selectedSpell.play_spear_anim()			
+			
 	await get_tree().create_timer(n).timeout
 	selectedSpell.type = spellDict[randi()%5]
 	for spell in spells:
 		if spell._name == selectedSpell.type: spell.setSelectedState(true)
 	selectedSpell.spellSprite.texture = load('res://images/'+selectedSpell.type+'.png')
 	#selectedSpell.spellSprite.scale = Vector2(0.2,0.2)
-	resetChosenSpellEffectStat()
 	
-func resetChosenSpellEffectStat():
-	selectedSpell.spellSprite.rotation = 0
-	selectedSpell.spellSprite.position.y = 0
+	
+func on_spell_anim_finished(anim_name: StringName):
+	cam2d.add_trauma(0.5)
+	selectedSpell.reset()
+
 	
 func generate_gameGrid():
 	var PAD_RIGHT = 70
