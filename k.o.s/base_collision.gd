@@ -14,6 +14,9 @@ func _process(delta: float) -> void:
 	
 
 func inflict_damage(n):
-	health -= n
+	health -= 50
+	$Base_health_bar.value = health
 	if health <= 0:
-		queue_free()
+		#queue_free()
+		get_parent().get_child(2).visible = 1
+		get_tree().paused = true
