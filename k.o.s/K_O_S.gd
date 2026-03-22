@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 			var j = arrowTravelPos % 10
 			spellBoxList[i][j].setActive(arrowSpell._activeTime)
 			spellBoxList[i][j].check_overlapping()
-			randomizeChoosenSpell()
+			randomizeChoosenSpell(2.0)
 			
 	for spell: Spell in spells:
 		spell.reduceCd(delta)
@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 						var j = pos % 10
 						spellBoxList[i][j].setActive(spell._activeTime)
 						spellBoxList[i][j].check_overlapping()
-						randomizeChoosenSpell()
+						randomizeChoosenSpell(2.0)
 						activateSpellTile(spellBoxList[i][j].position, spell._activeTime)
 					break
 				else:
@@ -108,16 +108,30 @@ func _input(event: InputEvent) -> void:
 func new_game():
 	generate_gameGrid()
 	$GoonTime.start()
-	randomizeChoosenSpell()
+	randomizeChoosenSpell(0.0)
 
 
-func randomizeChoosenSpell():
+func randomizeChoosenSpell(n:float):
+	for spell in spells :
+		spell.setSelectedState(false)
+	match selectedSpell:
+		"hammer":
+			$Base/selectedSpell/Sprite2D.rotationEffect = 1
+		"wind":
+			$Base/selectedSpell/Sprite2D.upEffect = 5
+	await get_tree().create_timer(n).timeout
 	selectedSpell = spellDict[randi()%5]
 	for spell in spells:
 		if spell._name == selectedSpell: spell.setSelectedState(true)
-		else : spell.setSelectedState(false)
 	$Base/selectedSpell/Sprite2D.texture = load('res://images/'+selectedSpell+'.png')
-	$Base/selectedSpell/Sprite2D.scale = Vector2(0.1,0.1)
+	$Base/selectedSpell/Sprite2D.scale = Vector2(0.2,0.2)
+	resetChosenSpellEffectStat()
+	
+func resetChosenSpellEffectStat():
+	$Base/selectedSpell/Sprite2D.rotation = 0
+	$Base/selectedSpell/Sprite2D.position.y = 0
+	$Base/selectedSpell/Sprite2D.rotationEffect = 0
+	$Base/selectedSpell/Sprite2D.upEffect = 0
 	
 func generate_gameGrid():
 	var PAD_RIGHT = 70
@@ -214,8 +228,6 @@ func _on_goon_time_timeout() -> void:
 				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x,goon.get_child(0).scale.y*2/3)
 			else :
 				goon.get_child(0).scale = Vector2(goon.get_child(0).scale.x,goon.get_child(0).scale.y)
-	
-
 			
 	# Spawn the actual goon
 	add_child(goon)

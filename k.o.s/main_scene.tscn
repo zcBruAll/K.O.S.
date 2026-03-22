@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
+[ext_resource type="Script" uid="uid://dpbh2h5a6ujmm" path="res://selectedSpellEffect.gd" id="8_7ycvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)
@@ -46,9 +47,10 @@ step = 1.0
 value = 100.0
 
 [node name="selectedSpell" type="Area2D" parent="Base" unique_id=1880112619]
-position = Vector2(-22, -274)
+position = Vector2(-67, -315)
 
 [node name="Sprite2D" type="Sprite2D" parent="Base/selectedSpell" unique_id=286894438]
+script = ExtResource("8_7ycvg")
 
 [node name="GoonTime" type="Timer" parent="." unique_id=263896193]
 wait_time = 1.2
