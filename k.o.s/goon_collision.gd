@@ -22,9 +22,9 @@ func _on_area_entered(area: Area2D) -> void:
 		oldArea = area
 		get_parent().linear_velocity.x = 0
 	elif area is spell_zone:
-		inflict_damage(1)
+		inflict_damage(2)
 	elif area is Base:
-		area.inflict_damage(3)
+		area.inflict_damage(1)
 		queue_free()
 		
 		
