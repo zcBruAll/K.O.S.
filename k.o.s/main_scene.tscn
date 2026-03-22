@@ -8,11 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dfc4xqcp220so" path="res://SpellParticle.tscn" id="5_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://dj4ufwi48hr4e" path="res://images/castleWall.png" id="6_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://bbbwe1642p1vd" path="res://images/slantedBoard_v2.png" id="7_nfk4m"]
-<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://cxfxelj48yync" path="res://selectedSpell.tscn" id="8_7ycvg"]
-=======
 [ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
->>>>>>> Stashed changes
+[ext_resource type="FontFile" uid="uid://udwmkxl2ssc8" path="res://resources/OptimusPrincepsSemiBold.ttf" id="9_7ycvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
 size = Vector2(706.27325, 1541)

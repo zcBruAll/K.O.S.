@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	
 
 func inflict_damage(n):
-	health -= 50
+	health -= n
 	$Base_health_bar.value = health
 	if health <= 0:
 		#queue_free()

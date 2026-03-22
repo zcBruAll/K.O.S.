@@ -103,7 +103,7 @@ func _process(delta: float) -> void:
 					else:
 						waitForArrow = false
 					spell.triggerEffect()
-					randomizeChoosenSpell()
+					randomizeChoosenSpell(2)
 					for pos in spellPos:
 						var i = pos / 10
 						var j = pos % 10
