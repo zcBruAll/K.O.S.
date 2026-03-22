@@ -6,6 +6,12 @@ extends Node2D
 
 @onready var selectedSpell = $Base/SelectedSpell
 
+var bow_sfx = preload("res://resources/audio/sfx/bow.mp3")
+var shield_sfx = preload("res://resources/audio/sfx/shield.mp3")
+var hammer_sfx = preload("res://resources/audio/sfx/hammer.mp3")
+var wind_sfx = preload("res://resources/audio/sfx/wind.mp3")
+
+
 var spellBoxList=[]
 var spells: Array = []
 
@@ -53,6 +59,7 @@ func slowGoons() -> void:
 func _ready() -> void:
 	KeyboardGeneration.layout = "QWERTZ"
 	KeyboardGeneration.generate()
+	$Theme_music.play()
 	
 	spells.append(Spell.new("wind", 0.2, 0.8, slowGoons))
 	spells.append(Spell.new("hammer", 0.2, 0.8, func(): print("hammer")))
@@ -94,6 +101,22 @@ func _process(delta: float) -> void:
 		spell.reduceCd(delta)
 		if spell.isReady():
 			if spell._selectedSpell :
+				match spell._name:
+					"bow":
+						$spell_sfx.stream = bow_sfx
+						$spell_sfx.play()
+					"shield":
+						$spell_sfx.stream = shield_sfx
+						$spell_sfx.play()
+					"hammer":
+						$spell_sfx.stream = hammer_sfx
+						$spell_sfx.play()
+					"wind":
+						$spell_sfx.stream = wind_sfx
+						$spell_sfx.play()
+					
+					
+				
 				var spellPos = KeyboardGeneration.checkSpell(spell.getMask())
 				if len(spellPos) > 0:
 					if spell._name == "bow":
