@@ -26,16 +26,39 @@ var spellDict = {
 	4:"bow"
 }
 
+func blockGoons() -> void:
+	for goonChild in get_children():
+		if goonChild.get_child(0) is Goon:
+			var goon: Goon = goonChild.get_child(0)
+			var blockingPos = []
+			var col = 0
+			var row = 0
+			for sbe in spellBoxList:
+				col = 0
+				for sb: spell_zone in sbe:
+					if sb.monitorable:
+						blockingPos.append([row, col])
+					col += 1
+				row += 1
+			if goon.position.x == 0:
+				pass
+	
+func slowGoons() -> void:
+	for goonChild in get_children():
+		if goonChild.get_child(0) is Goon:
+			var goon: Goon = goonChild.get_child(0)
+			goon.get_parent().linear_velocity.x /= 2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	KeyboardGeneration.layout = "QWERTZ"
 	KeyboardGeneration.generate()
 	
-	spells.append(Spell.new("wind", 1, 2, func(): print("Winded")))
-	spells.append(Spell.new("hammer", 1, 2, func(): print("hammer")))
-	spells.append(Spell.new("shield", 1, 2, func(): print("Shielded")))
-	spells.append(Spell.new("log", 1, 2, func(): print("Logged")))
-	spells.append(Spell.new("bow", 1, 2, func(): print("Bowed")))
+	spells.append(Spell.new("wind", 0.2, 0.8, slowGoons))
+	spells.append(Spell.new("hammer", 0.2, 0.8, func(): print("hammer")))
+	spells.append(Spell.new("shield", 0.2, 4, blockGoons))
+	spells.append(Spell.new("log", 0.2, 0.8, func(): print("Logged")))
+	spells.append(Spell.new("bow", 0.2, 0.8, func(): print("Bowed")))
 	new_game()
 
 func _process(delta: float) -> void:
@@ -80,9 +103,14 @@ func _process(delta: float) -> void:
 					else:
 						waitForArrow = false
 					spell.triggerEffect()
+					randomizeChoosenSpell()
 					for pos in spellPos:
 						var i = pos / 10
 						var j = pos % 10
+						if spell._name == "wind":
+							break
+						if spell._name == "shield":
+							spellBoxList[i][j].blocking = true
 						spellBoxList[i][j].setActive(spell._activeTime)
 						spellBoxList[i][j].check_overlapping()
 						randomizeChoosenSpell(2.0)
