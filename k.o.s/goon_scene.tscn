@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bu0r0o0gvc3m7"]
 
 [ext_resource type="Script" uid="uid://bvofmgkfydclh" path="res://goon_collision.gd" id="1_7h4yj"]
-[ext_resource type="Texture2D" uid="uid://cwlqtm8tlrqkj" path="res://images/goon1.png" id="1_ej3ja"]
-[ext_resource type="Script" path="res://sprite_2d.gd" id="3_jcnpj"]
+[ext_resource type="Texture2D" uid="uid://po4caie5ny46" path="res://images/goon3.png" id="2_jcnpj"]
+[ext_resource type="Script" uid="uid://dl8l4w3c1pse3" path="res://sprite_2d.gd" id="3_jcnpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sldrk"]
 size = Vector2(46.43998, 23.987778)
@@ -20,22 +20,22 @@ scale = Vector2(1.8, 1.8)
 script = ExtResource("1_7h4yj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1716304957]
-position = Vector2(-0.55555725, -55.000015)
-scale = Vector2(0.049560446, 0.07434067)
-texture = ExtResource("1_ej3ja")
+position = Vector2(1.1920929e-07, -28.333344)
+scale = Vector2(0.04829006, 0.0507337)
+texture = ExtResource("2_jcnpj")
 script = ExtResource("3_jcnpj")
 
 [node name="GoonColl" type="CollisionShape2D" parent="Area2D" unique_id=1713166192]
-position = Vector2(-4.1111107, -7.2222443)
+position = Vector2(0.5555558, -1.1444092e-05)
 scale = Vector2(1.8518528, 2.0408158)
 shape = SubResource("RectangleShape2D_sldrk")
 
 [node name="Health_bar" type="ProgressBar" parent="Area2D" unique_id=66335076]
 modulate = Color(0.49019608, 0.76862746, 0.7372549, 1)
-offset_left = -41.111115
-offset_top = -143.88889
-offset_right = 36.66667
-offset_bottom = -130.07101
+offset_left = -37.22222
+offset_top = -95.0
+offset_right = 40.555565
+offset_bottom = -81.18213
 max_value = 3.0
 step = 1.0
 value = 3.0
