@@ -4,9 +4,11 @@ extends Node2D
 @export var deaths: PackedScene
 @export var spellsParticles: PackedScene
 
+@onready var selectedSpell = $Base/SelectedSpell
+
 var spellBoxList=[]
 var spells: Array = []
-var selectedSpell
+
 
 var waitForArrow: bool = false
 var waitForArrowCd: float = 2
@@ -114,24 +116,22 @@ func new_game():
 func randomizeChoosenSpell(n:float):
 	for spell in spells :
 		spell.setSelectedState(false)
-	match selectedSpell:
+	match selectedSpell.type:
 		"hammer":
-			$Base/selectedSpell/Sprite2D.rotationEffect = 1
+			selectedSpell.play_tap_anim()
 		"wind":
-			$Base/selectedSpell/Sprite2D.upEffect = 5
+			pass # TODO: replace with anim
 	await get_tree().create_timer(n).timeout
-	selectedSpell = spellDict[randi()%5]
+	selectedSpell.type = spellDict[randi()%5]
 	for spell in spells:
-		if spell._name == selectedSpell: spell.setSelectedState(true)
-	$Base/selectedSpell/Sprite2D.texture = load('res://images/'+selectedSpell+'.png')
-	$Base/selectedSpell/Sprite2D.scale = Vector2(0.2,0.2)
+		if spell._name == selectedSpell.type: spell.setSelectedState(true)
+	selectedSpell.spellSprite.texture = load('res://images/'+selectedSpell.type+'.png')
+	#selectedSpell.spellSprite.scale = Vector2(0.2,0.2)
 	resetChosenSpellEffectStat()
 	
 func resetChosenSpellEffectStat():
-	$Base/selectedSpell/Sprite2D.rotation = 0
-	$Base/selectedSpell/Sprite2D.position.y = 0
-	$Base/selectedSpell/Sprite2D.rotationEffect = 0
-	$Base/selectedSpell/Sprite2D.upEffect = 0
+	selectedSpell.spellSprite.rotation = 0
+	selectedSpell.spellSprite.position.y = 0
 	
 func generate_gameGrid():
 	var PAD_RIGHT = 70
