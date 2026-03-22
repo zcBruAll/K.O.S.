@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvofmgkfydclh" path="res://goon_collision.gd" id="1_7h4yj"]
 [ext_resource type="Texture2D" uid="uid://cwlqtm8tlrqkj" path="res://images/goon1.png" id="1_ej3ja"]
-[ext_resource type="Script" uid="uid://dyrhp2n5gj110" path="res://sprite_2d.gd" id="3_jcnpj"]
+[ext_resource type="Script" path="res://sprite_2d.gd" id="3_jcnpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sldrk"]
 size = Vector2(46.43998, 23.987778)

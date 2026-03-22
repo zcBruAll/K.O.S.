@@ -1,6 +1,7 @@
 extends Node2D
 @export var goon_scene: PackedScene
 @export var spell_zone: PackedScene
+@export var deaths: PackedScene
 
 var spellBoxList=[]
 var spells: Array = []
@@ -24,7 +25,6 @@ func _ready() -> void:
 	spells.append(Spell.new("shield", 1, 2, func(): print("Shielded")))
 	spells.append(Spell.new("log", 1, 2, func(): print("Logged")))
 	spells.append(Spell.new("bow", 1, 2, func(): print("Bowed")))
-	#spells.append(Spell.new("arrow", 1, 2, func(): print("Arrowed")))
 	new_game()
 
 func _process(delta: float) -> void:
@@ -112,6 +112,12 @@ func generate_gameGrid():
 			add_child(spellBox)
 		spellBoxList.append(spellBoxLine)
 
+func spawnDeathParticles(goon: Goon) -> void:
+	var deathParticle: DeathParticle = deaths.instantiate()
+	deathParticle.global_position = goon.get_parent().position
+	deathParticle.z_index = goon.z_index + 1
+	deathParticle.emitting = true
+	add_child(deathParticle)
 
 func _on_goon_time_timeout() -> void:
 	$GoonTime.start()

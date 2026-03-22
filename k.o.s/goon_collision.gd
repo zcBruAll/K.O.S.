@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Base:
 		area.inflict_damage(3)
-		kill_enemy()
+		queue_free()
 	if area is spell_zone:
 		inflict_damage(1)
 		
@@ -28,4 +28,5 @@ func inflict_damage(n = 1):
 		kill_enemy()
 
 func kill_enemy():
+	get_parent().get_parent().spawnDeathParticles(self)
 	queue_free()

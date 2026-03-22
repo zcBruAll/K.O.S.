@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ddb16xjbb50nu"]
+
+[ext_resource type="Script" uid="uid://djvs7hdcjt2a5" path="res://death_particle.gd" id="1_tb4tw"]
+
+[sub_resource type="Curve" id="Curve_tb4tw"]
+_limits = [1.0, 120.21, 0.0, 1.0]
+_data = [Vector2(0, 45.201454), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5jtns"]
+curve = SubResource("Curve_tb4tw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tb4tw"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 100.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 11.77
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 74.99999
+radial_accel_max = 84.99999
+radial_accel_curve = SubResource("CurveTexture_5jtns")
+scale_max = 15.0
+
+[node name="DeathParticle" type="GPUParticles2D" unique_id=1702345669]
+emitting = false
+amount = 250
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.55
+process_material = SubResource("ParticleProcessMaterial_tb4tw")
+script = ExtResource("1_tb4tw")

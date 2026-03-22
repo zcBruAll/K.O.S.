@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b76wp17vbpn2b" path="res://base_collision.gd" id="3_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dmapk53b0itvd" path="res://images/slantedBoard.png" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://dysphksywfasx" path="res://spell_zone.tscn" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://ddb16xjbb50nu" path="res://DeathParticle.tscn" id="4_hq1ik"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2c62f"]
 
@@ -15,6 +16,7 @@ size = Vector2(395.52374, 1541)
 script = ExtResource("1_2c62f")
 goon_scene = ExtResource("2_d5x1h")
 spell_zone = ExtResource("4_d5x1h")
+deaths = ExtResource("4_hq1ik")
 
 [node name="Base" type="Area2D" parent="." unique_id=1420814887]
 position = Vector2(237.99997, 524)
